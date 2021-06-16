@@ -90,27 +90,19 @@ Grilla::~Grilla(){
     vertice * aux_h = aux_v;
     vertice * aux_h2;
     while(aux_v != NULL){
-        cout<<"O";
         while(aux_h != NULL){
             if(aux_h->derecha != NULL){
-                cout<<" -- O";
+                aux_h2 = aux_h->derecha;
+                delete aux_h;
+                aux_h = aux_h2;
+            }else{
+                delete aux_h;
+                aux_h = NULL;
             }
-            aux_h = aux_h->derecha;
         }
         cout<<endl;
         aux_v = aux_v->abajo;
         aux_h = aux_v;
-        if(aux_v != NULL){
-            aux_h2 = aux_v;
-            cout<<"|";
-            while(aux_h2 != NULL){
-                if(aux_h2->derecha != NULL){
-                    cout<<"    |";
-                }
-                aux_h2 = aux_h2->derecha;
-            }
-            cout<<endl;
-        }
     }
 }
 
