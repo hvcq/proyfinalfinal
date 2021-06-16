@@ -8,7 +8,7 @@ Grilla::Grilla(int n,int m){
     head_v = new vertice();
     head_a = new arista();
     if((n < 0)||(m < 0)){
-        //error-,
+        //error-, lo hace yerko
     }else{
         //aux_v manejan los vértices en dirección vertical
         //aux_h manejan los vértices en dirección horizontal
@@ -90,6 +90,7 @@ Grilla::~Grilla(){
     vertice * aux_h = aux_v;
     vertice * aux_h2;
     while(aux_v != NULL){
+        aux_v = aux_v->abajo;
         while(aux_h != NULL){
             if(aux_h->derecha != NULL){
                 aux_h2 = aux_h->derecha;
@@ -100,8 +101,6 @@ Grilla::~Grilla(){
                 aux_h = NULL;
             }
         }
-        cout<<endl;
-        aux_v = aux_v->abajo;
         aux_h = aux_v;
     }
 }
