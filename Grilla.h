@@ -12,6 +12,7 @@ struct arista {
 	arista * siguiente;
 	int num;
 };
+
 class Grilla{
 	private:
 		struct vertice * head_v;

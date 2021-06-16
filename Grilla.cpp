@@ -86,6 +86,7 @@ Grilla::Grilla(int n,int m){
 }
 
 Grilla::~Grilla(){
+    /*
     vertice * aux_v = head_v;
     vertice * aux_h = aux_v;
     vertice * aux_h2;
@@ -103,6 +104,7 @@ Grilla::~Grilla(){
         }
         aux_h = aux_v;
     }
+    */
 }
 
 void Grilla::dibuja_grilla(){
