@@ -159,16 +159,22 @@ int Grilla::funcion_random(int a, int b){
         cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
         throw;
     }
-    srand(time(NULL));
     int aux;
     aux = rand()&1;
-    if(aux==0){
-        aux = a + rand()%(b/2-a);
+    if(aux == 0){
+        if((b == 1) && (a==0)){
+            aux = a + rand()%b;
+        }else{
+            if(a == b){
+                aux = a + rand()%b;
+            }else{
+                aux = a + rand()%((b/2)-a);
+            }
+        }
     }else{
         aux= a + rand()%(b-a);
     }
     return aux;
-
 }
 
 void Grilla::pesos_aristas(){
