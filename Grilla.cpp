@@ -154,6 +154,29 @@ void Grilla::dibuja_grilla(){
     }
 }
 
+int Grilla::funcion_random(int a, int b){
+    if(a > b){
+        cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
+        throw;
+    }
+    srand(time(NULL));
+    int aux;
+    aux = rand()&1;
+    if(aux==0){
+        aux = a + rand()%(b/2-a);
+    }else{
+        aux= a + rand()%(b-a);
+    }
+    return aux;
+
+}
+
+void Grilla::pesos_aristas(){
+    while(head_a->siguiente != NULL){
+        head_a;
+    }
+}
+
 vertice * Grilla::head_vertice(){
     return head_v;
 }

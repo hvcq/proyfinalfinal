@@ -1,7 +1,12 @@
 #include <iostream>
 using namespace std;
 int main(){
-    while(1)
-    printf("1\n");
+    srand(time(NULL));
+    cout<<(rand()&1)<<endl;
+    cout<<(rand()&1)<<endl;
+    cout<<(rand()&1)<<endl;
+    cout<<(rand()&1)<<endl;
+    cout<<(rand()&1)<<endl;
+    
     return 0;
 }

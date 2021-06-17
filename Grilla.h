@@ -22,6 +22,8 @@ class Grilla{
 		Grilla(int n,int m);
 		~Grilla();
 		void dibuja_grilla();
+		int funcion_random(int a, int b); 
+		void pesos_aristas();
         vertice * head_vertice();
         arista * head_arista();
 		int size();
