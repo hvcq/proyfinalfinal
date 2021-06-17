@@ -88,6 +88,7 @@ Grilla::Grilla(int n,int m){
 Grilla::~Grilla(){
     vertice * aux_v = head_v;
     vertice * aux_h = aux_v;
+    vertice * aux_v2;
     vertice * aux_h2;
     while(aux_v != NULL){
         while(aux_h != NULL){
@@ -104,7 +105,13 @@ Grilla::~Grilla(){
                 aux_h = NULL;
             }
         }
-        aux_v = aux_v->abajo;
+        if(aux_v->abajo != NULL){
+            aux_v2 = aux_v->abajo;
+            delete aux_v;
+            aux_v = aux_v2;
+        }else{
+            aux_v = aux_v->abajo;
+        }
         aux_h = aux_v;
     }
 }
