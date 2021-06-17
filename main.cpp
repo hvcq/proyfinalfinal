@@ -5,26 +5,25 @@ using namespace std;
 
 int main(){
     srand(time(NULL));
+    Grilla * g; 
     int n,m;
-    cout<<"ingrese los valores de n y m"<<endl;
+    cout<<"Ingrese los valores de n y m"<<endl;
     cin>>n;
     cin>>m;
-    Grilla * g = new Grilla(n,m,false);
+    int agregaPesos;
+    cout<<"¿Desea agregar pesos a las aristas? [1] si [otro numero] no"<<endl;
+    cin>>agregaPesos;
+    if(agregaPesos == 1){
+        cout<<"ingrese los valores de a y b"<<endl;
+        int a,b;
+        cin>>a;
+        cin>>b;
+        g = new Grilla(n,m,a,b);
+    }else{
+        g = new Grilla(n,m);
+    }
     g->dibuja_grilla();
     //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
-    cout<<g->funcion_random(0,1)<<endl;
-    cout<<g->funcion_random(0,1)<<endl;
-    cout<<g->funcion_random(0,1)<<endl;
-    cout<<g->funcion_random(0,1)<<endl;
-    cout<<g->funcion_random(0,10)<<endl;
-    cout<<g->funcion_random(0,10)<<endl;
-    cout<<g->funcion_random(0,10)<<endl;
-    cout<<g->funcion_random(0,10)<<endl;
-    cout<<g->funcion_random(0,100)<<endl;
-    cout<<g->funcion_random(0,100)<<endl;
-    cout<<g->funcion_random(0,100)<<endl;
-    cout<<g->funcion_random(0,100)<<endl;
     delete g;
     return 0;
-
 }

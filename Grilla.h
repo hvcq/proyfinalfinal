@@ -19,7 +19,8 @@ class Grilla{
         struct arista * head_a;
 		int mysize;
 	public:
-		Grilla(int n,int m,bool conPesos);
+		Grilla(int n,int m);
+		Grilla(int n,int m,int aa,int bb);
 		~Grilla();
 		void dibuja_grilla();
 		int funcion_random(int a, int b); 
