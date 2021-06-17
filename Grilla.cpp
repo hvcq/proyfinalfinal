@@ -86,25 +86,27 @@ Grilla::Grilla(int n,int m){
 }
 
 Grilla::~Grilla(){
-    /*
     vertice * aux_v = head_v;
     vertice * aux_h = aux_v;
     vertice * aux_h2;
     while(aux_v != NULL){
-        aux_v = aux_v->abajo;
         while(aux_h != NULL){
             if(aux_h->derecha != NULL){
-                aux_h2 = aux_h->derecha;
-                delete aux_h;
-                aux_h = aux_h2;
+                if(aux_h != aux_v){
+                    aux_h2 = aux_h->derecha;
+                    delete aux_h;
+                    aux_h = aux_h2;
+                }else{
+                    aux_h = aux_h->derecha;
+                }
             }else{
                 delete aux_h;
                 aux_h = NULL;
             }
         }
+        aux_v = aux_v->abajo;
         aux_h = aux_v;
     }
-    */
 }
 
 void Grilla::dibuja_grilla(){
