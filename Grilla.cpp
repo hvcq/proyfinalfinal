@@ -162,17 +162,25 @@ int Grilla::funcion_random(int a, int b){
     int aux;
     aux = rand()&1;
     if(aux == 0){
-        if((b == 1) && (a==0)){
-            aux = a + rand()%b;
+        if((b == 1) && (a == 0)){
+            aux = rand()%(b+1);
         }else{
             if(a == b){
-                aux = a + rand()%b;
+                aux = rand()%(b+1);
             }else{
-                aux = a + rand()%((b/2)-a);
+                aux = a + rand()%(((b+1)/2)-a);
             }
         }
     }else{
-        aux= a + rand()%(b-a);
+       if((b == 1) && (a == 0)){
+            aux = rand()%(b+1);
+        }else{
+            if(a == b){
+                aux = rand()%(b+1);
+            }else{
+                aux = (b/2) + rand()%((b+1)/2);
+            }
+        }
     }
     return aux;
 }
