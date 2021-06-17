@@ -10,7 +10,7 @@ struct arista {
 	vertice * a;
 	vertice * b;
 	arista * siguiente;
-	int num;
+	int peso;
 };
 
 class Grilla{
@@ -19,7 +19,7 @@ class Grilla{
         struct arista * head_a;
 		int mysize;
 	public:
-		Grilla(int n,int m);
+		Grilla(int n,int m,bool conPesos);
 		~Grilla();
 		void dibuja_grilla();
 		int funcion_random(int a, int b); 

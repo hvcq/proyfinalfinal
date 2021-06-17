@@ -3,7 +3,9 @@
 
 using namespace std;
 
-Grilla::Grilla(int n,int m){
+Grilla::Grilla(int n,int m,bool conPesos){
+    int a = 0;
+    int b = 10;
 	mysize = 0;
     head_v = new vertice();
     head_a = new arista();
@@ -18,9 +20,8 @@ Grilla::Grilla(int n,int m){
         vertice * aux_h2;
         vertice * aux_h1;
         arista * aux_arista = head_a;
-        int k = 0;
-        // Forma primera parte de la grilla
-        // Esto incluye todos los vertices, n*m/2 aristas necesarias para completar la grilla
+        // Forma primera parte de la Grilla
+        // Esto incluye todos los vertices, n*m/2 aristas necesarias para completar la Grilla
         for(int i = 0; i<n; ++i){
             aux_h2 = aux_v2;
             for(int j = 0; j<m; ++j){
@@ -30,8 +31,11 @@ Grilla::Grilla(int n,int m){
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
-                ++k;
-                aux_arista->siguiente->num = k;
+                if(conPesos == true){
+                    aux_arista->siguiente->peso = funcion_random(a,b);
+                }else{
+                    aux_arista->siguiente->peso = 1;
+                }
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -42,8 +46,11 @@ Grilla::Grilla(int n,int m){
             aux_v2 = aux_v2->abajo;
             aux_v2->arriba = aux_v1;
             aux_arista->siguiente = new arista();
-            ++k;
-            aux_arista->siguiente->num = k;
+            if(conPesos == true){
+                aux_arista->siguiente->peso = funcion_random(a,b);
+            }else{
+                aux_arista->siguiente->peso = 1;
+            }
             aux_arista->siguiente->a = aux_v1;
             aux_arista->siguiente->b = aux_v2;
             aux_arista = aux_arista->siguiente;
@@ -57,8 +64,11 @@ Grilla::Grilla(int n,int m){
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
-                ++k;
-                aux_arista->siguiente->num = k;
+                if(conPesos == true){
+                    aux_arista->siguiente->peso = funcion_random(a,b);
+                }else{
+                    aux_arista->siguiente->peso = 1;
+                }
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
         }
@@ -72,8 +82,11 @@ Grilla::Grilla(int n,int m){
                 aux_h1->abajo = aux_h2;
                 aux_h2->arriba = aux_h1;
                 aux_arista->siguiente = new arista();
-                ++k;
-                aux_arista->siguiente->num = k;
+                if(conPesos == true){
+                    aux_arista->siguiente->peso = funcion_random(a,b);
+                }else{
+                    aux_arista->siguiente->peso = 1;
+                }
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -166,7 +179,7 @@ int Grilla::funcion_random(int a, int b){
             aux = rand()%(b+1);
         }else{
             if(a == b){
-                aux = rand()%(b+1);
+                aux = a;
             }else{
                 aux = a + rand()%(((b+1)/2)-a);
             }
@@ -176,7 +189,7 @@ int Grilla::funcion_random(int a, int b){
             aux = rand()%(b+1);
         }else{
             if(a == b){
-                aux = rand()%(b+1);
+                aux = a;
             }else{
                 aux = (b/2) + rand()%((b+1)/2);
             }

@@ -9,7 +9,7 @@ int main(){
     cout<<"ingrese los valores de n y m"<<endl;
     cin>>n;
     cin>>m;
-    Grilla * g = new Grilla(n,m);
+    Grilla * g = new Grilla(n,m,false);
     g->dibuja_grilla();
     //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
     cout<<g->funcion_random(0,1)<<endl;
