@@ -8,7 +8,8 @@ Grilla::Grilla(int n,int m){
     head_v = new vertice();
     head_a = new arista();
     if((n < 0)||(m < 0)){
-        //error-, lo hace yerko
+        cout<<"Ingrese valores de n y m validos"<<endl;
+        throw;
     }else{
         //aux_v manejan los vértices en dirección vertical
         //aux_h manejan los vértices en dirección horizontal
@@ -86,6 +87,7 @@ Grilla::Grilla(int n,int m){
 }
 
 Grilla::~Grilla(){
+    //Borra Vértices
     vertice * aux_v = head_v;
     vertice * aux_h = aux_v;
     vertice * aux_v2;
@@ -113,6 +115,13 @@ Grilla::~Grilla(){
             aux_v = aux_v->abajo;
         }
         aux_h = aux_v;
+    }
+    //Borra Aristas
+    arista * aux_arista = head_a;
+    while(aux_arista != NULL){
+        head_a = aux_arista->siguiente;
+        delete aux_arista;
+        aux_arista = head_a;
     }
 }
 
@@ -148,9 +157,12 @@ void Grilla::dibuja_grilla(){
 vertice * Grilla::head_vertice(){
     return head_v;
 }
+
+
 arista * Grilla::head_arista(){
     return head_a;
 }
 int Grilla::size(){
+    //(n+1)*(m+1)
     return -1;
 }

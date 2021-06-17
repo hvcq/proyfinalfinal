@@ -11,6 +11,7 @@ int main(){
     Grilla * g = new Grilla(n,m);
     g->dibuja_grilla();
     //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
+    delete g;
     return 0;
 
 }
