@@ -4,6 +4,7 @@
 using namespace std;
 
 struct vertice {
+	//Quiza se podria separar padre y rank uwu
 	vertice * padre ;
 	int rank;
 	vertice * arriba;
