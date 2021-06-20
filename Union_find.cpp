@@ -1,22 +1,35 @@
 #include "Union_find.h"
 
 Union_find::Union_find(){
-
+    
 }
 
 Union_find::~Union_find(){
     
 }
 
-void Union_find::Makeset(vertice * repre){
-    
+void Union_find::Makeset(vertice * x){
+    x->padre = x;
+    x->rank = 0;
 }
 
-vertice * Union_find::Find(vertice * aux){
-    vertice * auxi;
-    return auxi;
+void Union_find::Link(vertice * x, vertice * y){
+    if(x->rank >= y->rank){
+        y->padre = x;
+        x->rank = x->rank + 1;
+    }else{
+        x->padre = y;
+        y->rank = y->rank + 1;
+    }
 }
 
-void Union_find::Union(vertice * a, vertice *b){
+vertice * Union_find::Find(vertice * x){
+    if (x != x->padre){
+        x->padre = Find(x);
+    }
+    return x->padre;
+}
 
+void Union_find::Union(vertice * x, vertice *y){
+    Link(Find(x),Find(y));
 }

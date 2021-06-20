@@ -20,7 +20,6 @@ Grilla::Grilla(int n,int m){
             aux_h2 = aux_v2;
             for(int j = 0; j<m; ++j){
                 aux_h2->derecha = new vertice();
-                aux_h2->derecha->num = j + 1;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
@@ -31,7 +30,6 @@ Grilla::Grilla(int n,int m){
                 aux_arista = aux_arista->siguiente;
             }
             aux_v2->abajo = new vertice();
-            aux_v2->abajo->num = i + 1;
             aux_v1 = aux_v2;
             aux_v2 = aux_v2->abajo;
             aux_v2->arriba = aux_v1;
@@ -45,7 +43,6 @@ Grilla::Grilla(int n,int m){
         aux_h2 = aux_v2;
         for(int i = 0; i<m; ++i){
                 aux_h2->derecha = new vertice();
-                aux_h2->derecha->num = i + 1;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
@@ -100,7 +97,6 @@ Grilla::Grilla(int n,int m,int aa,int bb){
             aux_h2 = aux_v2;
             for(int j = 0; j<m; ++j){
                 aux_h2->derecha = new vertice();
-                aux_h2->derecha->num = j + 1;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
@@ -111,7 +107,6 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_arista = aux_arista->siguiente;
             }
             aux_v2->abajo = new vertice();
-            aux_v2->abajo->num = i + 1;
             aux_v1 = aux_v2;
             aux_v2 = aux_v2->abajo;
             aux_v2->arriba = aux_v1;
@@ -125,7 +120,6 @@ Grilla::Grilla(int n,int m,int aa,int bb){
         aux_h2 = aux_v2;
         for(int i = 0; i<m; ++i){
                 aux_h2->derecha = new vertice();
-                aux_h2->derecha->num = i + 1;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;

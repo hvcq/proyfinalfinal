@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 #include "Union_find.h"
 
 using namespace std;
@@ -7,7 +8,6 @@ class Grilla{
 	private:
 		struct vertice * head_v;
         struct arista * head_a;
-		vector <vertice_UF> vertices_MST;
 		vector <arista> aristas_MST;
 		int mysize;
 	public:

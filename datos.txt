@@ -11,4 +11,13 @@ Algoritmo de Kruskal:
 -Si dichas nubes tienen representantes distintos los une y añade la arista al MST, de lo contrario no la añade a MST.
 -El proceso se repite hasta que no haya aristas en el minheap.
 
+Implementacion Mala:
+-Se usa un vector de vectores para contener representantes y representados
+-Se mantiene la idea de el numero asociado al vertice corresponderlo con la posiciones en el vector.
+-Al borras usar pop a la vez que añadimos al nuevo vector si son n elementos son 2n operaciones O(n).
 
+Implementacion buena:
+-Se coloca en cada nodo su padre
+
+Datos:
+- posiciones una vez añadidos con make-set todos los vertices, no aumenta.

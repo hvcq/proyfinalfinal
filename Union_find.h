@@ -1,9 +1,11 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 struct vertice {
-	int num;
+	vertice * padre ;
+	int rank;
 	vertice * arriba;
     vertice * abajo;
     vertice * izquierda;
@@ -17,18 +19,14 @@ struct arista {
 	int peso;
 };
 
-struct vertice_UF{
-	vertice * representante;
-	vertice * vertice_grilla;
-};
-
 class Union_find{
     private:
-    	vector<vertice_UF> nube;
+
     public:
     	Union_find();
 		~Union_find();
-    	void Makeset(vertice * repre);
-    	vertice * Find(vertice * aux);
-    	void Union(vertice * a, vertice *b);
+    	void Makeset(vertice * x);
+		void Link(vertice * x,vertice * y)
+    	vertice * Find(vertice * x);
+    	void Union(vertice * x, vertice * y);
 };
