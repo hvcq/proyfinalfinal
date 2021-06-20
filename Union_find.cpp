@@ -14,12 +14,15 @@ void Union_find::Makeset(vertice * x){
 }
 
 void Union_find::Link(vertice * x, vertice * y){
-    if(x->rank >= y->rank){
+    if(x->rank == y->rank){
         y->padre = x;
         x->rank = x->rank + 1;
     }else{
-        x->padre = y;
-        y->rank = y->rank + 1;
+        if(x->rank > y->rank){
+            y->padre = x;
+        }else{
+            x->padre = y;
+        }
     }
 }
 
