@@ -1,0 +1,8 @@
+La estructurá nube contendra lo siguiente:
+-Makeset: Coloca las aristas en una "cola", ahora cada arista es representante de si misma
+-Union: Une las dos nubes y coloca un representante de ella (debe ser una de las aristas)
+-Find: Retorna del representante de la nube
+
+No olvidar hacer la compresión de ruta.
+
+A
