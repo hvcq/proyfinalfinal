@@ -1,8 +1,14 @@
 La estructurá nube contendra lo siguiente:
--Makeset: Coloca las aristas en una "cola", ahora cada arista es representante de si misma
--Union: Une las dos nubes y coloca un representante de ella (debe ser una de las aristas)
+-Makeset: Coloca lo vertices en una "cola", ahora cada vertice es representante de si mismo
+-Union: Une las dos nubes y coloca un representante de ella (debe ser uno de los vertices)
 -Find: Retorna del representante de la nube
 
 No olvidar hacer la compresión de ruta.
 
-A
+Algoritmo de Kruskal: 
+-Coloca las aristas en una cola de prioridad (min heap)
+-Saca la menor arista y visita las nubes que conecta ella
+-Si dichas nubes tienen representantes distintos los une y añade la arista al MST, de lo contrario no la añade a MST.
+-El proceso se repite hasta que no haya aristas en el minheap.
+
+

@@ -1,22 +1,14 @@
-struct vertice {
-	int num;
-	vertice * arriba;
-    vertice * abajo;
-    vertice * izquierda;
-    vertice * derecha;
-};
+#include <bits/stdc++.h>
+#include "Union_find.h"
 
-struct arista {
-	vertice * a;
-	vertice * b;
-	arista * siguiente;
-	int peso;
-};
+using namespace std;
 
 class Grilla{
 	private:
 		struct vertice * head_v;
         struct arista * head_a;
+		vector <vertice_UF> vertices_MST;
+		vector <arista> aristas_MST;
 		int mysize;
 	public:
 		Grilla(int n,int m);
@@ -27,5 +19,6 @@ class Grilla{
 		void pesos_aristas();
         vertice * head_vertice();
         arista * head_arista();
+		vector<arista> kruskal();
 		int size();
 };

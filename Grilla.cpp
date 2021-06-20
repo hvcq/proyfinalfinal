@@ -1,8 +1,4 @@
 #include "Grilla.h"
-#include <iostream>
-
-using namespace std;
-
 Grilla::Grilla(int n,int m){
 	mysize = 0;
     head_v = new vertice();
@@ -274,6 +270,12 @@ vertice * Grilla::head_vertice(){
 arista * Grilla::head_arista(){
     return head_a;
 }
+
+vector<arista> Grilla::kruskal(){
+    vector<arista> MST;
+    return MST;
+}
+
 int Grilla::size(){
     //(n+1)*(m+1)
     return -1;
