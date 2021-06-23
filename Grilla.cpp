@@ -87,6 +87,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
     int a = aa;
     int b = bb;
 	mysize = 0;
+    nubes = new Union_find();
     head_v = new vertice();
     head_a = new arista();
     if((n < 0)||(m < 0)){
@@ -231,7 +232,7 @@ void Grilla::dibuja_grilla(){
     }else{
         if((ene == 1)&&(eme == 0)){
             aux_arista = arista_asociada(head_v,head_v->abajo);
-            cout<<"O"<<endl<<"|"<<aux_arista->peso<<"|"<<endl<<"O"<<endl;
+            cout<<"O"<<endl<<"|"<<endl<<aux_arista->peso<<endl<<"|"<<endl<<"O"<<endl;
         }else{
             if((ene == 0)&&(eme == 1)){
                 aux_arista = arista_asociada(head_v,head_v->derecha);

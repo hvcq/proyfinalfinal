@@ -23,7 +23,7 @@ int main(){
     }else{
         g = new Grilla(n,m);
     }
-    g->dibuja_grilla();
+    cout<<"-----------"<<endl;
     int jj = 0;
     arista * head_arista = g->head_arista()->siguiente;
     while(head_arista != NULL){
@@ -31,6 +31,8 @@ int main(){
         head_arista = head_arista->siguiente;
         ++jj;
     }
+    cout<<"-----------"<<endl;
+    g->dibuja_grilla();
     /*
     while (g->minHeap.empty() == false)
     {
