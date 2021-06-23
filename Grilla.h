@@ -18,8 +18,10 @@ class Grilla{
 	private:
 		struct vertice * head_v;
         struct arista * head_a;
-		
+		Union_find * nubes;
 		vector <arista> aristas_MST;
+		int ene;
+		int eme;
 		int mysize;
 	public:
 		priority_queue <arista *, vector<arista *>, myComparator> minHeap;
@@ -27,10 +29,11 @@ class Grilla{
 		Grilla(int n,int m,int aa,int bb);
 		~Grilla();
 		void dibuja_grilla();
+		arista * arista_asociada(vertice * x, vertice * y);
 		int funcion_random(int a, int b); 
 		void pesos_aristas();
         vertice * head_vertice();
         arista * head_arista();
-		vector<arista> kruskal();
+		vector<arista *> kruskal();
 		int size();
 };

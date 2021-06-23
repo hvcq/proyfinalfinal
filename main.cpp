@@ -31,11 +31,13 @@ int main(){
         head_arista = head_arista->siguiente;
         ++jj;
     }
+    /*
     while (g->minHeap.empty() == false)
     {
         cout << g->minHeap.top()->peso<< " "<<endl;
         g->minHeap.pop();
     }
+    */
     //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
     delete g;
     return 0;

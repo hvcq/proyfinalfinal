@@ -1,6 +1,9 @@
 #include "Grilla.h"
 Grilla::Grilla(int n,int m){
+    ene = n;
+    eme = m;
 	mysize = 0;
+    nubes = new Union_find();
     head_v = new vertice();
     head_a = new arista();
     if((n < 0)||(m < 0)){
@@ -79,6 +82,8 @@ Grilla::Grilla(int n,int m){
 }
 
 Grilla::Grilla(int n,int m,int aa,int bb){
+    ene = n;
+    eme = m;
     int a = aa;
     int b = bb;
 	mysize = 0;
@@ -135,7 +140,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
         }
-        // Termina de formar las aristas aux_v2es intermedias y finales faltantes
+        // Termina de formar las aristas aux_v2 es intermedias y finales faltantes
         aux_v1 = head_v; 
         aux_v2 = head_v->abajo;
         for(int i = 0; i<n; ++i){
@@ -198,32 +203,93 @@ Grilla::~Grilla(){
     }
 }
 
+arista * Grilla::arista_asociada(vertice * x, vertice * y){
+    arista * arista_aux = head_a->siguiente;
+    while(arista_aux != NULL){
+        if((arista_aux->a == x)&&(arista_aux->b == y))
+            return arista_aux;
+        else{
+            if((arista_aux->a == y)&&(arista_aux->b == x))
+                return arista_aux;
+            else
+                arista_aux = arista_aux->siguiente;
+        }
+    }
+    return arista_aux;
+}
 
 void Grilla::dibuja_grilla(){
-    vertice * aux_v = head_v;
-    vertice * aux_h = aux_v;
+    vertice * aux_v2;
+    vertice * aux_v1;
     vertice * aux_h2;
-    while(aux_v != NULL){
-        cout<<"O";
-        while(aux_h != NULL){
-            if(aux_h->derecha != NULL){
-                cout<<" -- O";
-            }
-            aux_h = aux_h->derecha;
-        }
-        cout<<endl;
-        aux_v = aux_v->abajo;
-        aux_h = aux_v;
-        if(aux_v != NULL){
-            aux_h2 = aux_v;
-            cout<<"|";
-            while(aux_h2 != NULL){
-                if(aux_h2->derecha != NULL){
-                    cout<<"    |";
+    vertice * aux_h1;
+    arista * aux_arista;
+    aux_v1 = head_v; 
+    aux_v2 = head_v->abajo;
+    if((ene == 0)&&(eme == 0)){
+        cout<<"O"<<endl;
+    }else{
+        if((ene == 1)&&(eme == 0)){
+            aux_arista = arista_asociada(head_v,head_v->abajo);
+            cout<<"O"<<endl<<"|"<<aux_arista->peso<<"|"<<endl<<"O"<<endl;
+        }else{
+            if((ene == 0)&&(eme == 1)){
+                aux_arista = arista_asociada(head_v,head_v->derecha);
+                cout<<"O -"<<aux_arista->peso<<"- O"<<endl;
+            }else{
+                for(int i = 0; i<ene; ++i){
+                    if(i == 0){
+                        aux_h1 = aux_v1;
+                        for(int j = 0; j<eme; ++j){
+                            if(j == 0){
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<"O -"<<aux_arista->peso<<"- O";
+                            }else{
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<" -"<<aux_arista->peso<<"- O";
+                            }
+                            aux_h1 = aux_h1->derecha;
+                        }
+                        cout<<endl;
+                    }
+                    aux_h1 = aux_v1;
+                    for(int j = 0; j<=eme; ++j){
+                        cout<<"|      ";
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    aux_h2 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        aux_arista = arista_asociada(aux_h1,aux_h2);
+                        cout<<aux_arista->peso<<"     ";
+                        aux_h1 = aux_h1->derecha;
+                        aux_h2 = aux_h2->derecha;
+
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    for(int j = 0; j<=eme; ++j){
+                        cout<<"|      ";
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    for(int j = 0; j<eme; ++j){
+                        if(j == 0){
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            cout<<"O -"<<aux_arista->peso<<"- O";
+                        }else{
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            cout<<" -"<<aux_arista->peso<<"- O";
+                        }
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_v1 = aux_v2;
+                    aux_v2 = aux_v2->abajo;
                 }
-                aux_h2 = aux_h2->derecha;
             }
-            cout<<endl;
         }
     }
 }
@@ -274,8 +340,33 @@ arista * Grilla::head_arista(){
     return head_a;
 }
 
-vector<arista> Grilla::kruskal(){
-    vector<arista> MST;
+vector<arista *> Grilla::kruskal(){
+    // Pasamos los vértices a la estructura Union-Find
+    vertice * aux_v = head_v;
+    vertice * aux_h = aux_v;
+    while(aux_v != NULL){
+        while(aux_h != NULL){
+            if(aux_h->derecha != NULL){
+                nubes->Makeset(aux_h->derecha);
+            }
+            aux_h = aux_h->derecha;
+        }
+        aux_v = aux_v->abajo;
+        aux_h = aux_v;
+    }
+    //En el constructor de Grilla pasamos las aristas
+    vector<arista *> MST;
+    arista * arista_aux;
+    while (minHeap.empty() == false)
+    {
+        arista_aux = minHeap.top();
+        minHeap.pop();
+        if((nubes->Find(arista_aux->a)) != (nubes->Find(arista_aux->b))){
+            MST.push_back(arista_aux);
+            nubes->Union(arista_aux->a,arista_aux->b);
+        }
+        
+    }
     return MST;
 }
 

@@ -15,28 +15,28 @@ public:
 };
 int main(){
     // Creates a min heap
-    priority_queue <nodo, vector<nodo>, myComparator> pq;
+    priority_queue <nodo *, vector<nodo *>, myComparator> pq;
     nodo * aux = new nodo();
-    aux.key = 5;
-    aux.num = 1;
+    aux->key = 5;
+    aux->num = 1;
     pq.push(aux);
-    aux.key = 1;
-    aux.num = 5;
+    aux->key = 1;
+    aux->num = 5;
     pq.push(aux);
-    aux.key = 2;
-    aux.num = 4;
+    aux->key = 2;
+    aux->num = 4;
     pq.push(aux);
-    aux.key = 3;
-    aux.num = 2;
+    aux->key = 3;
+    aux->num = 2;
     pq.push(aux);
-    aux.key = 500;
-    aux.num = 3;
+    aux->key = 500;
+    aux->num = 3;
     pq.push(aux);
  
     // One by one extract items from min heap
     while (pq.empty() == false)
     {
-        cout << pq.top().key << " ";
+        cout << pq.top()->key << " ";
         pq.pop();
     }
  
