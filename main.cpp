@@ -11,10 +11,10 @@ int main(){
     cout<<"Ingrese los valores de n y m"<<endl;
     cin>>n;
     cin>>m;
-    int agregaPesos;
-    cout<<"¿Desea agregar pesos a las aristas? [1] si [otro numero] no"<<endl;
-    cin>>agregaPesos;
-    if(agregaPesos == 1){
+    int agrega;
+    cout<<"¿Desea agregar vec_aristas->pesos a las aristas? [1] si [otro numero] no"<<endl;
+    cin>>agrega;
+    if(agrega == 1){
         cout<<"ingrese los valores de a y b"<<endl;
         int a,b;
         cin>>a;
@@ -24,6 +24,18 @@ int main(){
         g = new Grilla(n,m);
     }
     g->dibuja_grilla();
+    int jj = 0;
+    arista * head_arista = g->head_arista()->siguiente;
+    while(head_arista != NULL){
+        cout<<"vec_aristas->peso arista ("<<jj<<") :"<<head_arista->peso<<endl;
+        head_arista = head_arista->siguiente;
+        ++jj;
+    }
+    while (g->minHeap.empty() == false)
+    {
+        cout << g->minHeap.top()->peso<< " "<<endl;
+        g->minHeap.pop();
+    }
     //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
     delete g;
     return 0;

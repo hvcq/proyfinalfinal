@@ -25,6 +25,7 @@ Grilla::Grilla(int n,int m){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = 1;
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -35,6 +36,7 @@ Grilla::Grilla(int n,int m){
             aux_v2->arriba = aux_v1;
             aux_arista->siguiente = new arista();
             aux_arista->siguiente->peso = 1;
+            minHeap.push(aux_arista->siguiente);
             aux_arista->siguiente->a = aux_v1;
             aux_arista->siguiente->b = aux_v2;
             aux_arista = aux_arista->siguiente;
@@ -48,6 +50,7 @@ Grilla::Grilla(int n,int m){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = 1;
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
         }
@@ -62,6 +65,7 @@ Grilla::Grilla(int n,int m){
                 aux_h2->arriba = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = 1;
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -102,6 +106,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -112,6 +117,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
             aux_v2->arriba = aux_v1;
             aux_arista->siguiente = new arista();
             aux_arista->siguiente->peso = funcion_random(a,b);
+            minHeap.push(aux_arista->siguiente);
             aux_arista->siguiente->a = aux_v1;
             aux_arista->siguiente->b = aux_v2;
             aux_arista = aux_arista->siguiente;
@@ -125,6 +131,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
         }
@@ -139,6 +146,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_h2->arriba = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
+                minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
@@ -189,6 +197,7 @@ Grilla::~Grilla(){
         aux_arista = head_a;
     }
 }
+
 
 void Grilla::dibuja_grilla(){
     vertice * aux_v = head_v;
