@@ -33,7 +33,7 @@ int main(){
         ++jj;
     }
     cout<<"-----------"<<endl;
-    //g->dibuja_grilla();
+    g->dibuja_grilla();
     //cout<<"num arista: "<<aaa->peso<<endl;
     /*
     while (g->minHeap.empty() == false)

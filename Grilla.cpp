@@ -205,16 +205,25 @@ Grilla::~Grilla(){
                     aux_h = aux_h->derecha;
                 }
             }else{
-                delete aux_h;
-                aux_h = NULL;
+                if(aux_h->abajo != NULL){
+                    aux_h2 = aux_h->abajo;
+                    delete aux_h;
+                    aux_h = aux_h2;
+                    aux_v = aux_h;
+                }else{
+                    delete aux_h;
+                    aux_h = NULL;
+                }
             }
         }
-        if(aux_v->abajo != NULL){
-            aux_v2 = aux_v->abajo;
-            delete aux_v;
-            aux_v = aux_v2;
-        }else{
-            aux_v = aux_v->abajo;
+        if(aux_h != NULL){
+            if(aux_h->abajo != NULL){
+                aux_v2 = aux_v->abajo;
+                delete aux_v;
+                aux_v = aux_v2;
+            }else{
+                aux_v = aux_v->abajo;
+            }
         }
         aux_h = aux_v;
     }
