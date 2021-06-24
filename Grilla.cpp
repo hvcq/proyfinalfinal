@@ -56,6 +56,7 @@ Grilla::Grilla(int n,int m){
                 minHeap.push(aux_arista->siguiente);
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
+                aux_arista = aux_arista->siguiente;
         }
         // Termina de formar las aristas aux_v2es intermedias y finales faltantes
         aux_v1 = head_v; 
@@ -112,6 +113,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
+                cout<<"arista: "<<aux_arista->siguiente->peso<<endl;
                 minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
@@ -140,6 +142,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 minHeap.push(aux_arista->siguiente);
                 aux_arista->a = aux_h1;
                 aux_arista->b = aux_h2;
+                aux_arista = aux_arista->siguiente;
         }
         // Termina de formar las aristas aux_v2 es intermedias y finales faltantes
         aux_v1 = head_v; 
@@ -266,16 +269,15 @@ void Grilla::dibuja_grilla(){
                         cout<<aux_arista->peso<<"     ";
                         aux_h1 = aux_h1->derecha;
                         aux_h2 = aux_h2->derecha;
-
                     }
                     cout<<endl;
-                    aux_h1 = aux_v1;
+                    aux_h1 = aux_v2;
                     for(int j = 0; j<=eme; ++j){
                         cout<<"|      ";
                         aux_h1 = aux_h1->derecha;
                     }
                     cout<<endl;
-                    aux_h1 = aux_v1;
+                    aux_h1 = aux_v2;
                     for(int j = 0; j<eme; ++j){
                         if(j == 0){
                             aux_arista = arista_asociada(aux_h1,aux_h1->derecha);

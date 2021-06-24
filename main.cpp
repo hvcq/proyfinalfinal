@@ -32,7 +32,13 @@ int main(){
         ++jj;
     }
     cout<<"-----------"<<endl;
-    g->dibuja_grilla();
+    //g->dibuja_grilla();
+    vertice * vvv = g->head_vertice()->derecha->abajo->izquierda;
+    vertice * vv2 = g->head_vertice()->derecha->abajo->abajo->izquierda;
+    arista * aaa = g->arista_asociada(vvv,vv2);
+    if(aaa == NULL)
+        cout<<"pucha la custion"<<endl;
+    //cout<<"num arista: "<<aaa->peso<<endl;
     /*
     while (g->minHeap.empty() == false)
     {
