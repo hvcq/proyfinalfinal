@@ -11,6 +11,7 @@ struct vertice {
     vertice * abajo;
     vertice * izquierda;
     vertice * derecha;
+	int num;
 };
 
 struct arista {

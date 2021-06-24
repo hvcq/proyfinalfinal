@@ -26,18 +26,14 @@ int main(){
     cout<<"-----------"<<endl;
     int jj = 0;
     arista * head_arista = g->head_arista()->siguiente;
+    cout<<"(a , b)"<<endl;
     while(head_arista != NULL){
-        cout<<"vec_aristas->peso arista ("<<jj<<") :"<<head_arista->peso<<endl;
+        cout<<"("<<head_arista->a->num<<" , "<<head_arista->b->num<<") "<<"vec_aristas->peso arista ("<<jj<<") :"<<head_arista->peso<<endl;
         head_arista = head_arista->siguiente;
         ++jj;
     }
     cout<<"-----------"<<endl;
     //g->dibuja_grilla();
-    vertice * vvv = g->head_vertice()->derecha->abajo->izquierda;
-    vertice * vv2 = g->head_vertice()->derecha->abajo->abajo->izquierda;
-    arista * aaa = g->arista_asociada(vvv,vv2);
-    if(aaa == NULL)
-        cout<<"pucha la custion"<<endl;
     //cout<<"num arista: "<<aaa->peso<<endl;
     /*
     while (g->minHeap.empty() == false)

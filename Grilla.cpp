@@ -54,8 +54,8 @@ Grilla::Grilla(int n,int m){
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = 1;
                 minHeap.push(aux_arista->siguiente);
-                aux_arista->a = aux_h1;
-                aux_arista->b = aux_h2;
+                aux_arista->siguiente->a = aux_h1;
+                aux_arista->siguiente->b = aux_h2;
                 aux_arista = aux_arista->siguiente;
         }
         // Termina de formar las aristas aux_v2es intermedias y finales faltantes
@@ -83,6 +83,7 @@ Grilla::Grilla(int n,int m){
 }
 
 Grilla::Grilla(int n,int m,int aa,int bb){
+    int uuu = 0;
     ene = n;
     eme = m;
     int a = aa;
@@ -90,6 +91,8 @@ Grilla::Grilla(int n,int m,int aa,int bb){
 	mysize = 0;
     nubes = new Union_find();
     head_v = new vertice();
+    head_v->num = uuu;
+    ++uuu;
     head_a = new arista();
     if((n < 0)||(m < 0)){
         cout<<"Ingrese valores de n y m validos"<<endl;
@@ -108,6 +111,8 @@ Grilla::Grilla(int n,int m,int aa,int bb){
             aux_h2 = aux_v2;
             for(int j = 0; j<m; ++j){
                 aux_h2->derecha = new vertice();
+                aux_h2->derecha->num = uuu;
+                ++uuu;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
@@ -120,6 +125,8 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_arista = aux_arista->siguiente;
             }
             aux_v2->abajo = new vertice();
+            aux_v2->abajo->num = uuu;
+            ++uuu;
             aux_v1 = aux_v2;
             aux_v2 = aux_v2->abajo;
             aux_v2->arriba = aux_v1;
@@ -134,14 +141,27 @@ Grilla::Grilla(int n,int m,int aa,int bb){
         aux_h2 = aux_v2;
         for(int i = 0; i<m; ++i){
                 aux_h2->derecha = new vertice();
+                aux_h2->derecha->num = uuu;
+                ++uuu;
                 aux_h1 = aux_h2;
                 aux_h2 = aux_h2->derecha;
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
                 minHeap.push(aux_arista->siguiente);
-                aux_arista->a = aux_h1;
-                aux_arista->b = aux_h2;
+                aux_arista->siguiente->a = aux_h1;
+                aux_arista->siguiente->b = aux_h2;
+                /*if(i == 0){
+                    cout<<"---datitos--"<<endl;
+                    cout<<"v1: "<<aux_h1->num<<endl;
+                    cout<<"v2:"<<aux_h2->num<<endl;
+                    cout<<"arista_actual->peso: "<<aux_arista->peso<<endl;
+                    cout<<"a: "<<aux_arista->a->num<<endl;
+                    cout<<"b: "<<aux_arista->b->num<<endl;
+                    cout<<"arista_sig->peso: "<<aux_arista->siguiente->peso<<endl;
+                    cout<<"a_sig: "<<aux_arista->siguiente->a->num<<endl;
+                    cout<<"b_sig: "<<aux_arista->siguiente->b->num<<endl;
+                }*/
                 aux_arista = aux_arista->siguiente;
         }
         // Termina de formar las aristas aux_v2 es intermedias y finales faltantes
