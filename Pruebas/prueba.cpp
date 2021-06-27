@@ -1,5 +1,9 @@
+#include <iostream>
 #include <bits/stdc++.h>
+
 using namespace std;
+
+/*
 struct nodo{
     int key;
     int num;
@@ -13,9 +17,43 @@ public:
         return n1.key > n2.key;
     }
 };
+*/
+
+char enteroACaracter(int numero){
+    return numero + '0';
+}
+
+void convertToBinary(string & str,int n){
+    if (n / 2 != 0) {
+        convertToBinary(str,(n / 2));
+    }
+    char c = enteroACaracter(n%2);
+    str.push_back(c);
+}
+
+int random(int a,int b){
+    if(a > b){
+        cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
+        throw;
+    }
+    string str_a;
+    string str_b;
+    convertToBinary(str_a,a);
+    convertToBinary(str_b,b);
+    cout<<"str_a: "<<str_a<<endl;
+    cout<<"str_b: "<<str_b<<endl;
+    return 0;
+}
+
 int main(){
+    srand(time(NULL));
     // Creates a min heap
-    priority_queue <nodo *, vector<nodo *>, myComparator> pq;
+    int p = random(0,3);
+    /*
+    int i = stoi("11110", nullptr, 2);
+    cout<<"imprime binario to int :"<<i<<endl;
+    */
+    /*priority_queue <nodo *, vector<nodo *>, myComparator> pq;
     nodo * aux = new nodo();
     aux->key = 5;
     aux->num = 1;
@@ -41,6 +79,7 @@ int main(){
     }
  
     return 0;
+    */
     /*srand(time(NULL));
     cout<<(rand()&1)<<endl;
     cout<<(rand()&1)<<endl;

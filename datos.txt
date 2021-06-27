@@ -21,3 +21,8 @@ Implementacion buena:
 
 Datos:
 - posiciones una vez añadidos con make-set todos los vertices, no aumenta.
+
+ALGORITMO DE RANDOM
+
+Hemos convertido los numeros a string [,,,,] 
+Comprobamos columna por columna (bit por bit) y partir del cual hay bits diferentes (0,1) se usa el rand&1
