@@ -358,26 +358,29 @@ vector<arista *> Grilla::kruskal(){
     vertice * aux_h = aux_v;
     while(aux_v != NULL){
         while(aux_h != NULL){
-            if(aux_h->derecha != NULL){
-                nubes->Makeset(aux_h->derecha);
-            }
+            nubes->Makeset(aux_h);
             aux_h = aux_h->derecha;
         }
         aux_v = aux_v->abajo;
         aux_h = aux_v;
     }
+    cout<<"pase todos los veritces a union-find (makeset)"<<endl;
     //En el constructor de Grilla pasamos las aristas
     vector<arista *> MST;
     arista * arista_aux;
-    while (minHeap.empty() == false)
-    {
+    int vueltas = 0;
+    while (minHeap.empty() == false){
         arista_aux = minHeap.top();
         minHeap.pop();
+        ++vueltas;
         if((nubes->Find(arista_aux->a)) != (nubes->Find(arista_aux->b))){
             MST.push_back(arista_aux);
             nubes->Union(arista_aux->a,arista_aux->b);
         }
-        
+    }
+    cout<<"pase el find y union"<<endl;
+    for(int i = 0 ; i < MST.size(); i++){
+         cout<<"("<<MST.at(i)->a->num<<" , "<<MST.at(i)->b->num<<") "<<" Peso arista:"<<MST.at(i)->peso<<endl;
     }
     return MST;
 }

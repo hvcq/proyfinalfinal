@@ -28,7 +28,7 @@ void Union_find::Link(vertice * x, vertice * y){
 
 vertice * Union_find::Find(vertice * x){
     if (x != x->padre){
-        x->padre = Find(x);
+        x->padre = Find(x->padre);
     }
     return x->padre;
 }

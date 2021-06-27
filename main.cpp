@@ -34,6 +34,7 @@ int main(){
     }
     cout<<"-----------"<<endl;
     g->dibuja_grilla();
+    vector<arista *> arbol = g->kruskal();
     //cout<<"num arista: "<<aaa->peso<<endl;
     /*
     while (g->minHeap.empty() == false)
