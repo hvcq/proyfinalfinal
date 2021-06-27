@@ -191,49 +191,29 @@ Grilla::Grilla(int n,int m,int aa,int bb){
 Grilla::~Grilla(){
     //Borra Vértices
     vertice * aux_v = head_v;
-    vertice * aux_h = aux_v;
+    vertice * aux_h;
     vertice * aux_v2;
     vertice * aux_h2;
-    while(aux_v != NULL){
+    while(aux_v != NULL) {
+        aux_h = aux_v->derecha;
         while(aux_h != NULL){
-            if(aux_h->derecha != NULL){
-                if(aux_h != aux_v){
-                    aux_h2 = aux_h->derecha;
-                    delete aux_h;
-                    aux_h = aux_h2;
-                }else{
-                    aux_h = aux_h->derecha;
-                }
-            }else{
-                if(aux_h->abajo != NULL){
-                    aux_h2 = aux_h->abajo;
-                    delete aux_h;
-                    aux_h = aux_h2;
-                    aux_v = aux_h;
-                }else{
-                    delete aux_h;
-                    aux_h = NULL;
-                }
-            }
+            aux_h2 = aux_h->derecha;
+            delete aux_h;
+            aux_h = aux_h2;
         }
-        if(aux_h != NULL){
-            if(aux_h->abajo != NULL){
-                aux_v2 = aux_v->abajo;
-                delete aux_v;
-                aux_v = aux_v2;
-            }else{
-                aux_v = aux_v->abajo;
-            }
-        }
-        aux_h = aux_v;
-    }
+        aux_v2 = aux_v->abajo;
+        delete aux_v;
+        aux_v = aux_v2;
+    }  
     //Borra Aristas
-    arista * aux_arista = head_a;
+    arista * aux_arista = head_a->siguiente;
+    arista * aux_arista2 = head_a->siguiente;
     while(aux_arista != NULL){
-        head_a = aux_arista->siguiente;
+        aux_arista2 = aux_arista->siguiente;
         delete aux_arista;
-        aux_arista = head_a;
+        aux_arista = aux_arista2;
     }
+    delete head_a;
 }
 
 arista * Grilla::arista_asociada(vertice * x, vertice * y){
