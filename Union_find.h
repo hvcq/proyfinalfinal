@@ -19,6 +19,13 @@ struct arista {
 	vertice * b;
 	arista * siguiente;
 	int peso;
+	celda * c1;
+	celda * c2;
+};
+
+struct celda {
+	celda * padre ;
+	int rank;
 };
 
 class Union_find{
