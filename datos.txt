@@ -26,3 +26,12 @@ ALGORITMO DE RANDOM
 
 Hemos convertido los numeros a string [,,,,] 
 Comprobamos columna por columna (bit por bit) y partir del cual hay bits diferentes (0,1) se usa el rand&1
+
+RECORDAR IMPRIMIR EL ARBOL!!!
+----------------------------------------------------------------
+PREGUNTAS YERKO TO TROLA
+1- Hay que hacer informe¿?
+2- Podemos hacer el analisis de la complejidad en txt
+3- Esta bien nuestra funcion RANDOM
+4- Siempre el laberinto comienza y termina por el mismo lado¿?
+----------------------------------------------------------------

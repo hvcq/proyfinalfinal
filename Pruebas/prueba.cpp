@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -18,6 +18,38 @@ public:
     }
 };
 */
+
+/*
+int Grilla::funcion_random(int a, int b){
+    if(a > b){
+        cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
+        throw;
+    }
+    int aux;
+    aux = rand()&1;
+    if(aux == 0){
+        if((b == 1) && (a == 0)){
+            aux = rand()%(b+1);
+        }else{
+            if(a == b){
+                aux = a;
+            }else{
+                aux = a + rand()%(((b+1)/2)-a);
+            }
+        }
+    }else{
+       if((b == 1) && (a == 0)){
+            aux = rand()%(b+1);
+        }else{
+            if(a == b){
+                aux = a;
+            }else{
+                aux = (b/2) + rand()%((b+1)/2);
+            }
+        }
+    }
+    return aux;
+}*/
 
 char enteroACaracter(int numero){
     return numero + '0';
@@ -67,7 +99,6 @@ int random(int a,int b){
     while(cadena_b[pos] == '0'){
         ++pos;
     }
-    cout<<"pos: "<<pos<<endl;
     //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
     //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
     char cadena_random [9];

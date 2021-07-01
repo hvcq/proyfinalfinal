@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <string.h>
 #include "Union_find.h"
 
 using namespace std;
@@ -23,12 +24,15 @@ class Grilla{
 		int ene;
 		int eme;
 		int mysize;
+		char enteroACaracter(int numero);
+		void convertToBinary(string & str,int n);
 	public:
 		priority_queue <arista *, vector<arista *>, myComparator> minHeap;
 		Grilla(int n,int m);
 		Grilla(int n,int m,int aa,int bb);
 		~Grilla();
-		void dibuja_grilla();
+		void dibuja_grilla_cp();
+		void dibuja_grilla_sp();
 		arista * arista_asociada(vertice * x, vertice * y);
 		int funcion_random(int a, int b); 
 		void pesos_aristas();

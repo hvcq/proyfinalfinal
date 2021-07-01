@@ -20,9 +20,14 @@ int main(){
         cin>>a;
         cin>>b;
         g = new Grilla(n,m,a,b);
+        g->dibuja_grilla_cp();
     }else{
         g = new Grilla(n,m);
+        g->dibuja_grilla_sp();
     }
+    
+    vector<arista *> arbol = g->kruskal();
+    /*
     cout<<"-----------"<<endl;
     int jj = 0;
     arista * head_arista = g->head_arista()->siguiente;
@@ -32,9 +37,7 @@ int main(){
         head_arista = head_arista->siguiente;
         ++jj;
     }
-    cout<<"-----------"<<endl;
-    g->dibuja_grilla();
-    vector<arista *> arbol = g->kruskal();
+    cout<<"-----------"<<endl;*/
     //cout<<"num arista: "<<aaa->peso<<endl;
     /*
     while (g->minHeap.empty() == false)

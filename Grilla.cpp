@@ -230,8 +230,7 @@ arista * Grilla::arista_asociada(vertice * x, vertice * y){
     }
     return arista_aux;
 }
-
-void Grilla::dibuja_grilla(){
+void Grilla::dibuja_grilla_sp(){
     vertice * aux_v2;
     vertice * aux_v1;
     vertice * aux_h2;
@@ -248,7 +247,7 @@ void Grilla::dibuja_grilla(){
         }else{
             if((ene == 0)&&(eme == 1)){
                 aux_arista = arista_asociada(head_v,head_v->derecha);
-                cout<<"O -"<<aux_arista->peso<<"- O"<<endl;
+                cout<<"O--"<<aux_arista->peso<<"--O"<<endl;
             }else{
                 for(int i = 0; i<ene; ++i){
                     if(i == 0){
@@ -256,10 +255,85 @@ void Grilla::dibuja_grilla(){
                         for(int j = 0; j<eme; ++j){
                             if(j == 0){
                                 aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
-                                cout<<"O -"<<aux_arista->peso<<"- O";
+                                cout<<"O--"<<aux_arista->peso<<"--O";
                             }else{
                                 aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
-                                cout<<" -"<<aux_arista->peso<<"- O";
+                                cout<<"--"<<aux_arista->peso<<"--O";
+                            }
+                            aux_h1 = aux_h1->derecha;
+                        }
+                        cout<<endl;
+                    }
+                    aux_h1 = aux_v1;
+                    for(int j = 0; j<=eme; ++j){
+                        cout<<"|     ";
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    aux_h2 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        aux_arista = arista_asociada(aux_h1,aux_h2);
+                        cout<<aux_arista->peso<<"     ";
+                        aux_h1 = aux_h1->derecha;
+                        aux_h2 = aux_h2->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        cout<<"|     ";
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v2;
+                    for(int j = 0; j<eme; ++j){
+                        if(j == 0){
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            cout<<"O--"<<aux_arista->peso<<"--O";
+                        }else{
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            cout<<"--"<<aux_arista->peso<<"--O";
+                        }
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_v1 = aux_v2;
+                    aux_v2 = aux_v2->abajo;
+                }
+            }
+        }
+    }
+}
+
+void Grilla::dibuja_grilla_cp(){
+    vertice * aux_v2;
+    vertice * aux_v1;
+    vertice * aux_h2;
+    vertice * aux_h1;
+    arista * aux_arista;
+    aux_v1 = head_v; 
+    aux_v2 = head_v->abajo;
+    if((ene == 0)&&(eme == 0)){
+        cout<<"O"<<endl;
+    }else{
+        if((ene == 1)&&(eme == 0)){
+            aux_arista = arista_asociada(head_v,head_v->abajo);
+            cout<<"O"<<endl<<"|"<<endl<<aux_arista->peso<<endl<<"|"<<endl<<"O"<<endl;
+        }else{
+            if((ene == 0)&&(eme == 1)){
+                aux_arista = arista_asociada(head_v,head_v->derecha);
+                cout<<"O--"<<aux_arista->peso<<"--O"<<endl;
+            }else{
+                for(int i = 0; i<ene; ++i){
+                    if(i == 0){
+                        aux_h1 = aux_v1;
+                        for(int j = 0; j<eme; ++j){
+                            if(j == 0){
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<"O--"<<aux_arista->peso<<"--O";
+                            }else{
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<"--"<<aux_arista->peso<<"--O";
                             }
                             aux_h1 = aux_h1->derecha;
                         }
@@ -290,10 +364,10 @@ void Grilla::dibuja_grilla(){
                     for(int j = 0; j<eme; ++j){
                         if(j == 0){
                             aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
-                            cout<<"O -"<<aux_arista->peso<<"- O";
+                            cout<<"O--"<<aux_arista->peso<<"--O";
                         }else{
                             aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
-                            cout<<" -"<<aux_arista->peso<<"- O";
+                            cout<<"--"<<aux_arista->peso<<"--O";
                         }
                         aux_h1 = aux_h1->derecha;
                     }
@@ -306,35 +380,72 @@ void Grilla::dibuja_grilla(){
     }
 }
 
-int Grilla::funcion_random(int a, int b){
+char Grilla::enteroACaracter(int numero){
+    return numero + '0';
+}
+
+void Grilla::convertToBinary(string & str,int n){
+    if (n / 2 != 0) {
+        convertToBinary(str,(n / 2));
+    }
+    char c = enteroACaracter(n%2);
+    str.push_back(c);
+}
+
+int Grilla::funcion_random(int a,int b){
     if(a > b){
         cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
         throw;
     }
-    int aux;
-    aux = rand()&1;
-    if(aux == 0){
-        if((b == 1) && (a == 0)){
-            aux = rand()%(b+1);
-        }else{
-            if(a == b){
-                aux = a;
-            }else{
-                aux = a + rand()%(((b+1)/2)-a);
-            }
-        }
+    if((a == 0)&&(b == 0)){
+        return 0;
     }else{
-       if((b == 1) && (a == 0)){
-            aux = rand()%(b+1);
-        }else{
-            if(a == b){
-                aux = a;
-            }else{
-                aux = (b/2) + rand()%((b+1)/2);
-            }
+        if((a == 0)&&(b == 1)){
+            return rand()&1;
         }
     }
-    return aux;
+    string str_a;
+    string str_b;
+    // Pasa los enteros a string
+    convertToBinary(str_a,a);
+    convertToBinary(str_b,b);
+    // Pasa los string de los enteros a una representacion binaria contenida en
+    // las cadenas de caracteres cadena_a y cadena_b
+    char cadena_a [9];
+    char cadena_b [9];
+    cadena_a[8] = '\0';
+    cadena_b[8] = '\0';
+    memset(cadena_a,'0',8);
+    memset(cadena_b,'0',8);
+    for(int i = 0; i < str_a.length(); ++i){
+        cadena_a[8 - str_a.length() + i] = str_a.at(i);
+    }
+    for(int i = 0; i < str_b.length(); ++i){
+        cadena_b[8 - str_b.length() + i] = str_b.at(i);
+    }
+    //Verifica hasta que posicion los bit no varian en el entero b
+    int pos = 0;
+    while(cadena_b[pos] == '0'){
+        ++pos;
+    }
+    //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
+    //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
+    char cadena_random [9];
+    cadena_random[8] = '\0';
+    memset(cadena_random,'0',8);
+    int random;
+    for(int i = pos; i< 8; ++i){
+        random = rand()&1;
+        cadena_random[i] = enteroACaracter(random);
+    }
+    //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b]
+    int aux_int = stoi(cadena_random, nullptr, 2);
+    while((aux_int < a) || (aux_int > b)){
+        cadena_random[pos] = cadena_b[pos]; 
+        aux_int = stoi(cadena_random, nullptr, 2);
+        ++pos;
+    }
+    return aux_int;
 }
 
 void Grilla::pesos_aristas(){
@@ -364,7 +475,6 @@ vector<arista *> Grilla::kruskal(){
         aux_v = aux_v->abajo;
         aux_h = aux_v;
     }
-    cout<<"pase todos los veritces a union-find (makeset)"<<endl;
     //En el constructor de Grilla pasamos las aristas
     vector<arista *> MST;
     arista * arista_aux;
@@ -378,10 +488,10 @@ vector<arista *> Grilla::kruskal(){
             nubes->Union(arista_aux->a,arista_aux->b);
         }
     }
-    cout<<"pase el find y union"<<endl;
+    /*cout<<"pase el find y union"<<endl;
     for(int i = 0 ; i < MST.size(); i++){
          cout<<"("<<MST.at(i)->a->num<<" , "<<MST.at(i)->b->num<<") "<<" Peso arista:"<<MST.at(i)->peso<<endl;
-    }
+    }*/
     return MST;
 }
 
