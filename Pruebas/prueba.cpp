@@ -36,19 +36,83 @@ int random(int a,int b){
         cout<<"a y b no representan un intervalo [a,b] correcto"<<endl;
         throw;
     }
+    if((a == 0)&&(b == 0)){
+        return 0;
+    }else{
+        if((a == 0)&&(b == 1)){
+            return rand()&1;
+        }
+    }
     string str_a;
     string str_b;
+    // Pasa los enteros a string
     convertToBinary(str_a,a);
     convertToBinary(str_b,b);
-    cout<<"str_a: "<<str_a<<endl;
-    cout<<"str_b: "<<str_b<<endl;
-    return 0;
+    // Pasa los string de los enteros a una representacion binaria contenida en
+    // las cadenas de caracteres cadena_a y cadena_b
+    char cadena_a [9];
+    char cadena_b [9];
+    cadena_a[8] = '\0';
+    cadena_b[8] = '\0';
+    memset(cadena_a,'0',8);
+    memset(cadena_b,'0',8);
+    for(int i = 0; i < str_a.length(); ++i){
+        cadena_a[8 - str_a.length() + i] = str_a.at(i);
+    }
+    for(int i = 0; i < str_b.length(); ++i){
+        cadena_b[8 - str_b.length() + i] = str_b.at(i);
+    }
+    //Verifica hasta que posicion los bit no varian en el entero b
+    int pos = 0;
+    while(cadena_b[pos] == '0'){
+        ++pos;
+    }
+    cout<<"pos: "<<pos<<endl;
+    //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
+    //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
+    char cadena_random [9];
+    cadena_random[8] = '\0';
+    memset(cadena_random,'0',8);
+    int random;
+    for(int i = pos; i< 8; ++i){
+        random = rand()&1;
+        cadena_random[i] = enteroACaracter(random);
+    }
+    /*ALTERNATIVA 1 int pos2 = 0;
+    while(cadena_a[pos2] == '0'){
+        ++pos2;
+    }
+    if(rand()&1 == 0){
+        cadena_random[pos] = '1';
+    }else{
+        cadena_random[pos2] = '1';
+    }*/
+    //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b] 
+
+    int borrarborrar = stoi(cadena_random, nullptr, 2);
+    cout<<"cadena antes: "<<cadena_random<<" - numero antes: "<<borrarborrar<<endl;
+    int aux_int = stoi(cadena_random, nullptr, 2);
+    while((aux_int < a) || (aux_int > b)){
+        cadena_random[pos] = cadena_b[pos]; 
+        aux_int = stoi(cadena_random, nullptr, 2);
+        ++pos;
+    }
+    cout<<"cadena despues: "<<cadena_random<<endl;
+    //Pasamos la representacion binara a entero
+    //int int_random = stoi(cadena_random, nullptr, 2);
+    //return int_random;
+    return aux_int;
 }
 
 int main(){
     srand(time(NULL));
     // Creates a min heap
-    int p = random(0,3);
+    cout<<"ingresa los valores de a y b"<<endl;
+    int a,b;
+    cin>>a;
+    cin>>b;
+    int p = random(a,b);
+    cout<<p<<endl;
     /*
     int i = stoi("11110", nullptr, 2);
     cout<<"imprime binario to int :"<<i<<endl;
