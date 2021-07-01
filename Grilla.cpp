@@ -424,9 +424,9 @@ int Grilla::funcion_random(int a,int b){
         cadena_b[8 - str_b.length() + i] = str_b.at(i);
     }
     //Verifica hasta que posicion los bit no varian en el entero b
-    int pos = 0;
-    while(cadena_b[pos] == '0'){
-        ++pos;
+    int pos_b = 0;
+    while(cadena_b[pos_b] == '0'){
+        ++pos_b;
     }
     //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
     //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
@@ -434,16 +434,29 @@ int Grilla::funcion_random(int a,int b){
     cadena_random[8] = '\0';
     memset(cadena_random,'0',8);
     int random;
-    for(int i = pos; i< 8; ++i){
+    for(int i = pos_b; i< 8; ++i){
         random = rand()&1;
         cadena_random[i] = enteroACaracter(random);
     }
-    //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b]
     int aux_int = stoi(cadena_random, nullptr, 2);
-    while((aux_int < a) || (aux_int > b)){
-        cadena_random[pos] = cadena_b[pos]; 
-        aux_int = stoi(cadena_random, nullptr, 2);
-        ++pos;
+    if((aux_int < a) || (aux_int > b)){
+        int aproxima = rand()&1;
+        if(aproxima == 0){
+            //Acota el entero asemejandolo a 'a', hasta que este en el rango [a,b]
+            int pos_a = pos_b;
+            while((aux_int < a) || (aux_int > b)){
+                cadena_random[pos_a] = cadena_a[pos_a]; 
+                aux_int = stoi(cadena_random, nullptr, 2);
+                ++pos_a;
+            }
+        }else{
+            //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b]
+            while((aux_int < a) || (aux_int > b)){
+                cadena_random[pos_b] = cadena_b[pos_b]; 
+                aux_int = stoi(cadena_random, nullptr, 2);
+                ++pos_b;
+            }
+        }
     }
     return aux_int;
 }

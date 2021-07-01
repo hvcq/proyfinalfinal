@@ -3,6 +3,11 @@
 
 using namespace std;
 
+struct celda {
+	celda * padre ;
+	int rank;
+};
+
 struct vertice {
 	//Quiza se podria separar padre y rank uwu
 	vertice * padre ;
@@ -21,11 +26,6 @@ struct arista {
 	int peso;
 	celda * c1;
 	celda * c2;
-};
-
-struct celda {
-	celda * padre ;
-	int rank;
 };
 
 class Union_find{
