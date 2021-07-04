@@ -521,6 +521,14 @@ vector<arista *> Grilla::kruskal(){
 }
 
 void Grilla::laberinto(){
+    if(((ene == 0)&&(eme == 0))||((ene == 0)&&(eme == 1))||((ene == 1)&&(eme == 0))||((ene == 1)&&(eme == 1))){
+        cout<<"formato de laberinto inválido"<<endl;
+        throw;
+    }
+    if(((ene == 1)&&(eme == 2))||((ene == 2)&&(eme == 1))){
+        cout<<"formato de laberinto inválido"<<endl;
+        throw;
+    }
     //Inicializa estado arista (todas no son pared)
     arista * aux_a = head_a->siguiente;
     while(aux_a != NULL){
