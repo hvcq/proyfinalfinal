@@ -558,17 +558,58 @@ void Grilla::laberinto(){
             aux_a = aux_a->siguiente;
         }
     }
+    //Asigna a cada arista (horizontal) su celda
+    int arriba = 0;
+    int abajo = 1;
+    int columna = 0;
+    int izquierda = 0; //segunda componente
+    int derecha = 1; //segunda componente
+    int fila = 0;
+    aux_a = head_a->siguiente;
+    while(aux_a != NULL){
+        if((abajo == ene)&&(columna == eme)){
+            if((aux_a->pared != true)&&(aux_a->eliminada != true)){
+                aux_a->c1 = &matriz_c[fila][izquierda];
+                aux_a->c2 = &matriz_c[fila][derecha];
+                ++izquierda;
+                ++derecha;
+            }
+            if((derecha == eme)&&(fila != ene)){
+                izquierda = 0;
+                derecha = 1;
+                ++fila;
+            }
+        }else{
+            if((aux_a->pared != true)&&(aux_a->eliminada != true)){
+                aux_a->c1 = &matriz_c[arriba][columna];
+                aux_a->c2 = &matriz_c[abajo][columna];
+                ++columna;
+            }
+            if(columna == eme){
+                if(abajo != ene - 1){
+                    columna = 0;
+                }
+                ++arriba;
+                ++abajo;
+            }
+        }
+        aux_a = aux_a->siguiente;
+    }
     for(int i = 0; i < ene; ++i ){
         for(int j = 0; j < eme;++j){
+            matriz_c[i][j].x = i;
+            matriz_c[i][j].y = j;
             nubes->Makeset(&matriz_c[i][j]);
         }
     }
+    //Crear vector de aristas con las aristas que no estan eliminadas y no son pared
 }
 
 void Grilla::lee_celdas(){
     for(int i = 0; i < ene; ++i ){
         for(int j = 0; j < eme;++j){
-            cout<<matriz_c[i][j].rank<<" ";
+            cout<<"("<<matriz_c[i][j].x<<","<<matriz_c[i][j].y<<") ";
+            //cout<<matriz_c[i][j].rank<<" ";
             //matriz_c[i][j].rank = (i+1)*j;
         }
         cout<<endl;

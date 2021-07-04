@@ -6,6 +6,8 @@ using namespace std;
 struct celda {
 	celda * padre ;
 	int rank;
+	int x;
+	int y;
 };
 
 struct vertice {
@@ -24,7 +26,9 @@ struct arista {
 	vertice * b;
 	arista * siguiente;
 	int peso;
+	//c1 puede ser una celda de arriba o de la izquierda
 	celda * c1;
+	//c1 puede ser una celda de abajo o de la derecha
 	celda * c2;
 	//Saber si la arista forma parte de la pared del laberinto
 	bool pared;
