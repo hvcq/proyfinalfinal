@@ -34,10 +34,13 @@ class Grilla{
 		void dibuja_grilla_cp();
 		void dibuja_grilla_sp();
 		arista * arista_asociada(vertice * x, vertice * y);
+		void lee_celdas();
 		int funcion_random(int a, int b); 
 		void pesos_aristas();
         vertice * head_vertice();
         arista * head_arista();
 		vector<arista *> kruskal();
+		celda ** matriz_c;
+		void laberinto();
 		int size();
 };

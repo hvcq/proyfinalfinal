@@ -26,6 +26,10 @@ struct arista {
 	int peso;
 	celda * c1;
 	celda * c2;
+	//Saber si la arista forma parte de la pared del laberinto
+	bool pared;
+	//Para aplicar borrado lógico de la arista en el laberinto
+	bool eliminada;
 };
 
 class Union_find{
@@ -34,8 +38,14 @@ class Union_find{
     public:
     	Union_find();
 		~Union_find();
+		//Para vertices
     	void Makeset(vertice * x);
 		void Link(vertice * x,vertice * y);
     	vertice * Find(vertice * x);
     	void Union(vertice * x, vertice * y);
+		//Para celdas
+		void Makeset(celda * x);
+		void Link(celda * x,celda * y);
+    	celda * Find(celda * x);
+    	void Union(celda * x, celda * y);
 };

@@ -6,6 +6,10 @@ Grilla::Grilla(int n,int m){
     nubes = new Union_find();
     head_v = new vertice();
     head_a = new arista();
+    //inicializa matriz con las celdas
+    matriz_c = new celda*[ene];
+    for(int i = 0; i<ene; i++ )
+        matriz_c[i] = new celda[eme];
     if((n < 0)||(m < 0)){
         cout<<"Ingrese valores de n y m validos"<<endl;
         throw;
@@ -94,6 +98,10 @@ Grilla::Grilla(int n,int m,int aa,int bb){
     head_v->num = uuu;
     ++uuu;
     head_a = new arista();
+    //inicializa matriz con las celdas
+    matriz_c = new celda*[ene];
+    for(int i = 0; i<ene; i++ )
+        matriz_c[i] = new celda[eme];
     if((n < 0)||(m < 0)){
         cout<<"Ingrese valores de n y m validos"<<endl;
         throw;
@@ -214,6 +222,10 @@ Grilla::~Grilla(){
         aux_arista = aux_arista2;
     }
     delete head_a;
+    //Borra celdas
+    for(int i = 0; i<ene; i++ )
+        delete[] matriz_c[i];
+    delete[] matriz_c;    
 }
 
 arista * Grilla::arista_asociada(vertice * x, vertice * y){
@@ -506,6 +518,61 @@ vector<arista *> Grilla::kruskal(){
          cout<<"("<<MST.at(i)->a->num<<" , "<<MST.at(i)->b->num<<") "<<" Peso arista:"<<MST.at(i)->peso<<endl;
     }*/
     return MST;
+}
+
+void Grilla::laberinto(){
+    //Inicializa estado arista (todas no son pared)
+    arista * aux_a = head_a->siguiente;
+    while(aux_a != NULL){
+        aux_a->pared = false;
+        aux_a->eliminada = false;
+        aux_a = aux_a->siguiente;
+    }
+    //Bloquear paredes laberinto y elimina pared de inicio y fin
+    aux_a = head_a->siguiente;
+    for(int i = 0; i < ene; ++i ){
+        for(int j = 0; j < eme;++j){
+            if(i == 0){
+                aux_a->pared = true;
+            }
+            aux_a = aux_a->siguiente;
+        }
+        if(i == 0){
+            aux_a->eliminada = true;
+        }
+        aux_a->pared = true;
+        aux_a = aux_a->siguiente;
+    }
+    for(int i = 0; i < eme;++i){
+        aux_a->pared = true;
+        aux_a = aux_a->siguiente;
+    }
+    for(int i = 0; i < ene; ++i ){
+        for(int j = 0; j < eme;++j){
+            if(j == eme - 1){
+                aux_a->pared = true;
+            }
+            if((i == ene - 1)&&(j == eme - 1)){
+                aux_a->eliminada = true;
+            }
+            aux_a = aux_a->siguiente;
+        }
+    }
+    for(int i = 0; i < ene; ++i ){
+        for(int j = 0; j < eme;++j){
+            nubes->Makeset(&matriz_c[i][j]);
+        }
+    }
+}
+
+void Grilla::lee_celdas(){
+    for(int i = 0; i < ene; ++i ){
+        for(int j = 0; j < eme;++j){
+            cout<<matriz_c[i][j].rank<<" ";
+            //matriz_c[i][j].rank = (i+1)*j;
+        }
+        cout<<endl;
+    }
 }
 
 int Grilla::size(){

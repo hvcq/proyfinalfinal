@@ -27,6 +27,8 @@ int main(){
     }
     
     vector<arista *> arbol = g->kruskal();
+
+    g->laberinto();
     /*
     cout<<"-----------"<<endl;
     int jj = 0;
