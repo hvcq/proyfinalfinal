@@ -31,7 +31,6 @@ int main(){
     g->laberinto();
     g->lee_celdas();
     cout<<endl;
-    /*
     arista * aux_a = g->head_arista()->siguiente;
     int contador = 0;
     while(aux_a != NULL){
@@ -42,7 +41,17 @@ int main(){
         ++contador;
         aux_a = aux_a->siguiente;
     }
-    */
+    cout<<"--------------------------------------"<<endl;
+    contador = 0;
+    aux_a = g->head_arista()->siguiente;
+    while(aux_a != NULL){
+        if((aux_a->eliminada == true)&&(aux_a->pared != true)){
+            cout<<"la arista ("<<contador<<") : c1("<<aux_a->c1->x<<","<<aux_a->c1->y<<")";
+            cout<<" - c2("<<aux_a->c2->x<<","<<aux_a->c2->y<<")"<<endl;
+        }
+        ++contador;
+        aux_a = aux_a->siguiente;
+    }
     /*
     cout<<"-----------"<<endl;
     int jj = 0;

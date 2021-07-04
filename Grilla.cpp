@@ -611,6 +611,10 @@ void Grilla::laberinto(){
             num_random = funcion_random(1,vector_aristas.size() - 1);
         }
         aux_a = vector_aristas.at(num_random-1);
+        if(nubes->Find(aux_a->c1) != nubes->Find(aux_a->c2)){
+            nubes->Union(nubes->Find(aux_a->c1),nubes->Find(aux_a->c2));
+            aux_a->eliminada = true;
+        }
         vector_aristas.erase(vector_aristas.begin()+num_random -1);
     }
 }
