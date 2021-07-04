@@ -31,6 +31,7 @@ int main(){
     g->laberinto();
     g->lee_celdas();
     cout<<endl;
+    /*
     arista * aux_a = g->head_arista()->siguiente;
     int contador = 0;
     while(aux_a != NULL){
@@ -41,6 +42,7 @@ int main(){
         ++contador;
         aux_a = aux_a->siguiente;
     }
+    */
     /*
     cout<<"-----------"<<endl;
     int jj = 0;

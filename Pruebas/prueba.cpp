@@ -121,14 +121,14 @@ int random(int a,int b){
     //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b] 
 
     int borrarborrar = stoi(cadena_random, nullptr, 2);
-    cout<<"cadena antes: "<<cadena_random<<" - numero antes: "<<borrarborrar<<endl;
+    //cout<<"cadena antes: "<<cadena_random<<" - numero antes: "<<borrarborrar<<endl;
     int aux_int = stoi(cadena_random, nullptr, 2);
     while((aux_int < a) || (aux_int > b)){
         cadena_random[pos] = cadena_b[pos]; 
         aux_int = stoi(cadena_random, nullptr, 2);
         ++pos;
     }
-    cout<<"cadena despues: "<<cadena_random<<endl;
+    //cout<<"cadena despues: "<<cadena_random<<endl;
     //Pasamos la representacion binara a entero
     //int int_random = stoi(cadena_random, nullptr, 2);
     //return int_random;
@@ -138,12 +138,35 @@ int random(int a,int b){
 int main(){
     srand(time(NULL));
     // Creates a min heap
-    cout<<"ingresa los valores de a y b"<<endl;
+    /*cout<<"ingresa los valores de a y b"<<endl;
     int a,b;
     cin>>a;
     cin>>b;
     int p = random(a,b);
-    cout<<p<<endl;
+    cout<<p<<endl;*/
+    vector<char> posiciones;
+    vector<char> letras;
+    for(int i = 0;i<10;++i)
+        posiciones.push_back(i);
+    for(int i = 0;i<10;++i)
+        letras.push_back('a'+i);
+    for(int i = 0;i<10;++i)
+        cout<<letras.at(i)<<" ";
+    cout<<endl;
+    cout<<"--------"<<endl;
+    char aux_c;
+    int num_random;
+    int pos_random;
+    while(letras.size() != 0){
+        if(letras.size() == 1){
+            num_random= 1;
+        }else{
+            num_random = random(1,letras.size() - 1);
+        }
+        aux_c = letras.at(num_random-1);
+        cout<<"letra: "<<aux_c<<endl;
+        letras.erase(letras.begin()+num_random -1);
+    }
     /*
     int i = stoi("11110", nullptr, 2);
     cout<<"imprime binario to int :"<<i<<endl;

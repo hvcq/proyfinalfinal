@@ -98,7 +98,7 @@ Grilla::Grilla(int n,int m,int aa,int bb){
     head_v->num = uuu;
     ++uuu;
     head_a = new arista();
-    //inicializa matriz con las celdas
+    //Inicializa matriz con las celdas
     matriz_c = new celda*[ene];
     for(int i = 0; i<ene; i++ )
         matriz_c[i] = new celda[eme];
@@ -159,17 +159,6 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
-                /*if(i == 0){
-                    cout<<"---datitos--"<<endl;
-                    cout<<"v1: "<<aux_h1->num<<endl;
-                    cout<<"v2:"<<aux_h2->num<<endl;
-                    cout<<"arista_actual->peso: "<<aux_arista->peso<<endl;
-                    cout<<"a: "<<aux_arista->a->num<<endl;
-                    cout<<"b: "<<aux_arista->b->num<<endl;
-                    cout<<"arista_sig->peso: "<<aux_arista->siguiente->peso<<endl;
-                    cout<<"a_sig: "<<aux_arista->siguiente->a->num<<endl;
-                    cout<<"b_sig: "<<aux_arista->siguiente->b->num<<endl;
-                }*/
                 aux_arista = aux_arista->siguiente;
         }
         // Termina de formar las aristas aux_v2 es intermedias y finales faltantes
@@ -567,6 +556,7 @@ void Grilla::laberinto(){
         }
     }
     //Asigna a cada arista (horizontal) su celda
+    vector<arista *> vector_aristas; // Guardamos las aristas que no son pared y no estan eliminadas
     int arriba = 0;
     int abajo = 1;
     int columna = 0;
@@ -577,6 +567,7 @@ void Grilla::laberinto(){
     while(aux_a != NULL){
         if((abajo == ene)&&(columna == eme)){
             if((aux_a->pared != true)&&(aux_a->eliminada != true)){
+                vector_aristas.push_back(aux_a);
                 aux_a->c1 = &matriz_c[fila][izquierda];
                 aux_a->c2 = &matriz_c[fila][derecha];
                 ++izquierda;
@@ -589,6 +580,7 @@ void Grilla::laberinto(){
             }
         }else{
             if((aux_a->pared != true)&&(aux_a->eliminada != true)){
+                vector_aristas.push_back(aux_a);
                 aux_a->c1 = &matriz_c[arriba][columna];
                 aux_a->c2 = &matriz_c[abajo][columna];
                 ++columna;
@@ -610,7 +602,17 @@ void Grilla::laberinto(){
             nubes->Makeset(&matriz_c[i][j]);
         }
     }
-    //Crear vector de aristas con las aristas que no estan eliminadas y no son pared
+    //Creación del laberinto (eliminación de aristas internas en base a Union-Find de celdas)
+    int num_random;
+    while(vector_aristas.size() != 0){
+        if(vector_aristas.size() == 1){
+            num_random = 1;
+        }else{
+            num_random = funcion_random(1,vector_aristas.size() - 1);
+        }
+        aux_a = vector_aristas.at(num_random-1);
+        vector_aristas.erase(vector_aristas.begin()+num_random -1);
+    }
 }
 
 void Grilla::lee_celdas(){
