@@ -27,9 +27,8 @@ int main(){
     }
     
     vector<arista *> arbol = g->kruskal();
-
-    g->laberinto();
-    //g->lee_celdas();
+    g->laberinto(); //falla en algun random
+    g->lee_celdas();
     /*cout<<endl;
     arista * aux_a = g->head_arista()->siguiente;
     int contador = 0;
