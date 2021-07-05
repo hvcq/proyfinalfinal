@@ -42,5 +42,6 @@ class Grilla{
 		vector<arista *> kruskal();
 		celda ** matriz_c;
 		void laberinto();
+		void dibuja_laberinto();
 		int size();
 };

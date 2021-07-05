@@ -619,6 +619,107 @@ void Grilla::laberinto(){
     }
 }
 
+void Grilla::dibuja_laberinto(){
+    vertice * aux_v2;
+    vertice * aux_v1;
+    vertice * aux_h2;
+    vertice * aux_h1;
+    arista * aux_arista;
+    aux_v1 = head_v; 
+    aux_v2 = head_v->abajo;
+    if((ene == 0)&&(eme == 0)){
+        cout<<"O"<<endl;
+    }else{
+        if((ene == 1)&&(eme == 0)){
+            aux_arista = arista_asociada(head_v,head_v->abajo);
+            cout<<"O"<<endl<<"|"<<endl<<aux_arista->peso<<endl<<"|"<<endl<<"O"<<endl;
+        }else{
+            if((ene == 0)&&(eme == 1)){
+                aux_arista = arista_asociada(head_v,head_v->derecha);
+                cout<<"O--"<<aux_arista->peso<<"--O"<<endl;
+            }else{
+                for(int i = 0; i<ene; ++i){
+                    if(i == 0){
+                        aux_h1 = aux_v1;
+                        for(int j = 0; j<eme; ++j){
+                            if(j == 0){
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<"O--"<<aux_arista->peso<<"--O";
+                            }else{
+                                aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                                cout<<"--"<<aux_arista->peso<<"--O";
+                            }
+                            aux_h1 = aux_h1->derecha;
+                        }
+                        cout<<endl;
+                    }
+                    aux_h1 = aux_v1;
+                    aux_h2 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        aux_arista = arista_asociada(aux_h1,aux_h2);
+                        if(aux_arista->eliminada != true){
+                            cout<<"|     ";
+                        }else{
+                            cout<<"      ";
+                        }
+                        aux_h1 = aux_h1->derecha;
+                        aux_h2 = aux_h2->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    aux_h2 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        aux_arista = arista_asociada(aux_h1,aux_h2);
+                        if(aux_arista->eliminada != true){
+                            cout<<aux_arista->peso<<"     ";
+                        }else{
+                            cout<<"      ";
+                        }
+                        aux_h1 = aux_h1->derecha;
+                        aux_h2 = aux_h2->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v1;
+                    aux_h2 = aux_v2;
+                    for(int j = 0; j<=eme; ++j){
+                        aux_arista = arista_asociada(aux_h1,aux_h2);
+                        if(aux_arista->eliminada != true){
+                            cout<<"|     ";
+                        }else{
+                            cout<<"      ";
+                        }
+                        aux_h1 = aux_h1->derecha;
+                        aux_h2 = aux_h2->derecha;
+                    }
+                    cout<<endl;
+                    aux_h1 = aux_v2;
+                    for(int j = 0; j<eme; ++j){
+                        if(j == 0){
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            if(aux_arista->eliminada != true){
+                                cout<<"O--"<<aux_arista->peso<<"--O";
+                            }else{
+                                cout<<"O     O";
+                            }
+                        }else{
+                            aux_arista = arista_asociada(aux_h1,aux_h1->derecha);
+                            if(aux_arista->eliminada != true){
+                                cout<<"--"<<aux_arista->peso<<"--O";
+                            }else{
+                                cout<<"     O";
+                            }
+                        }
+                        aux_h1 = aux_h1->derecha;
+                    }
+                    cout<<endl;
+                    aux_v1 = aux_v2;
+                    aux_v2 = aux_v2->abajo;
+                }
+            }
+        }
+    }
+}
+
 void Grilla::lee_celdas(){
     for(int i = 0; i < ene; ++i ){
         for(int j = 0; j < eme;++j){
