@@ -144,28 +144,25 @@ int main(){
     cin>>b;
     int p = random(a,b);
     cout<<p<<endl;*/
-    vector<char> posiciones;
-    vector<char> letras;
-    for(int i = 0;i<10;++i)
-        posiciones.push_back(i);
-    for(int i = 0;i<10;++i)
-        letras.push_back('a'+i);
-    for(int i = 0;i<10;++i)
+    vector<int> letras;
+    for(int i = 0;i<640;++i)
+        letras.push_back(i);
+    /*for(int i = 0;i<10;++i)
         cout<<letras.at(i)<<" ";
-    cout<<endl;
+    cout<<endl;*/
     cout<<"--------"<<endl;
     char aux_c;
     int num_random;
     int pos_random;
     while(letras.size() != 0){
         if(letras.size() == 1){
-            num_random= 1;
+            num_random = 0;
         }else{
-            num_random = random(1,letras.size() - 1);
+            num_random = random(0,letras.size() - 1);
         }
-        aux_c = letras.at(num_random-1);
-        cout<<"letra: "<<aux_c<<endl;
-        letras.erase(letras.begin()+num_random -1);
+        aux_c = letras.at(num_random);
+        /*cout<<"letra: "<<aux_c<<endl;*/
+        letras.erase(letras.begin()+num_random);
     }
     /*
     int i = stoi("11110", nullptr, 2);

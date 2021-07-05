@@ -23,12 +23,13 @@ int main(){
         g->dibuja_grilla_cp();
     }else{
         g = new Grilla(n,m);
-        g->dibuja_grilla_sp();
+        //g->dibuja_grilla_sp();
     }
     
     vector<arista *> arbol = g->kruskal();
     g->laberinto(); //falla en algun random
-    g->lee_celdas();
+    cout<<"Laberinto formado exitosamente"<<endl;
+    //g->lee_celdas();
     /*cout<<endl;
     arista * aux_a = g->head_arista()->siguiente;
     int contador = 0;
@@ -40,7 +41,7 @@ int main(){
         ++contador;
         aux_a = aux_a->siguiente;
     }*/
-    g->dibuja_laberinto();
+    //g->dibuja_laberinto();
     /*cout<<"--------------------------------------"<<endl;
     contador = 0;
     aux_a = g->head_arista()->siguiente;

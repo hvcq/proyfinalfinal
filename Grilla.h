@@ -43,5 +43,4 @@ class Grilla{
 		celda ** matriz_c;
 		void laberinto();
 		void dibuja_laberinto();
-		int size();
 };

@@ -555,7 +555,7 @@ void Grilla::laberinto(){
             aux_a = aux_a->siguiente;
         }
     }
-    //Asigna a cada arista (horizontal) su celda
+    //Asigna a cada arista del interior del laberinto sus celdas aledañas
     vector<arista *> vector_aristas; // Guardamos las aristas que no son pared y no estan eliminadas
     int arriba = 0;
     int abajo = 1;
@@ -606,16 +606,16 @@ void Grilla::laberinto(){
     int num_random;
     while(vector_aristas.size() != 0){
         if(vector_aristas.size() == 1){
-            num_random = 1;
+            num_random = 0;
         }else{
-            num_random = funcion_random(1,vector_aristas.size() - 1);
+            num_random = funcion_random(0,vector_aristas.size() - 1);
         }
-        aux_a = vector_aristas.at(num_random-1);
+        aux_a = vector_aristas.at(num_random);
         if(nubes->Find(aux_a->c1) != nubes->Find(aux_a->c2)){
             nubes->Union(nubes->Find(aux_a->c1),nubes->Find(aux_a->c2));
             aux_a->eliminada = true;
         }
-        vector_aristas.erase(vector_aristas.begin()+num_random -1);
+        vector_aristas.erase(vector_aristas.begin()+num_random);
     }
 }
 
@@ -729,9 +729,4 @@ void Grilla::lee_celdas(){
         }
         cout<<endl;
     }
-}
-
-int Grilla::size(){
-    //(n+1)*(m+1)
-    return -1;
 }
