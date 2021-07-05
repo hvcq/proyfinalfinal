@@ -12,8 +12,21 @@ int main(){
     cin>>n;
     cin>>m;
     int agrega;
-    cout<<"¿Desea agregar vec_aristas->pesos a las aristas? [1] si [otro numero] no"<<endl;
+    cout<<"Seleccion: Grilla sin pesos[0]"<<endl;
+    cout<<"           Grilla con pesos[otro]"<<endl;
     cin>>agrega;
+    bool salir = false;
+    int seleccion;
+    do{
+        cout<<"Seleccion: Dibuja Grilla     [0]"<<endl;
+        if(agrega == 0){
+            cout<<"           Crea y dibuja laberinto     [0]"<<endl; 
+        }else{
+            
+        }
+        cout<<"           Salir     [-1]"<<endl;
+        cin>>seleccion;
+    }while(salir != true);
     if(agrega == 1){
         cout<<"ingrese los valores de a y b"<<endl;
         int a,b;
@@ -42,37 +55,7 @@ int main(){
         aux_a = aux_a->siguiente;
     }*/
     //g->dibuja_laberinto();
-    /*cout<<"--------------------------------------"<<endl;
-    contador = 0;
-    aux_a = g->head_arista()->siguiente;
-    while(aux_a != NULL){
-        if((aux_a->eliminada == true)&&(aux_a->pared != true)){
-            cout<<"la arista ("<<contador<<") : c1("<<aux_a->c1->x<<","<<aux_a->c1->y<<")";
-            cout<<" - c2("<<aux_a->c2->x<<","<<aux_a->c2->y<<")"<<endl;
-        }
-        ++contador;
-        aux_a = aux_a->siguiente;
-    }*/
-    /*
-    cout<<"-----------"<<endl;
-    int jj = 0;
-    arista * head_arista = g->head_arista()->siguiente;
-    cout<<"(a , b)"<<endl;
-    while(head_arista != NULL){
-        cout<<"("<<head_arista->a->num<<" , "<<head_arista->b->num<<") "<<"vec_aristas->peso arista ("<<jj<<") :"<<head_arista->peso<<endl;
-        head_arista = head_arista->siguiente;
-        ++jj;
-    }
-    cout<<"-----------"<<endl;*/
-    //cout<<"num arista: "<<aaa->peso<<endl;
-    /*
-    while (g->minHeap.empty() == false)
-    {
-        cout << g->minHeap.top()->peso<< " "<<endl;
-        g->minHeap.pop();
-    }
-    */
-    //cout<<g->head_vertice()->derecha->derecha->abajo->abajo->abajo->num<<endl;
+
     delete g;
     return 0;
 }
