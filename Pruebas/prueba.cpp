@@ -1,5 +1,6 @@
  #include <iostream>
 #include <bits/stdc++.h>
+#include <chrono>
 
 using namespace std;
 
@@ -138,19 +139,25 @@ int random(int a,int b){
 int main(){
     srand(time(NULL));
     // Creates a min heap
-    /*cout<<"ingresa los valores de a y b"<<endl;
+    cout<<"ingresa los valores de a y b"<<endl;
     int a,b;
     cin>>a;
     cin>>b;
+    auto start = chrono::high_resolution_clock::now();
     int p = random(a,b);
-    cout<<p<<endl;*/
+    auto finish = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds> (finish - start).count();
+    cout <<"total time "<< duration << " [ms]" << " \n";
+    cout<<p<<endl;
+
+    /*
     vector<int> letras;
     for(int i = 0;i<640;++i)
         letras.push_back(i);
     /*for(int i = 0;i<10;++i)
         cout<<letras.at(i)<<" ";
     cout<<endl;*/
-    cout<<"--------"<<endl;
+    /*cout<<"--------"<<endl;
     char aux_c;
     int num_random;
     int pos_random;
@@ -162,8 +169,11 @@ int main(){
         }
         aux_c = letras.at(num_random);
         /*cout<<"letra: "<<aux_c<<endl;*/
+        /*
         letras.erase(letras.begin()+num_random);
     }
+    */
+    
     /*
     int i = stoi("11110", nullptr, 2);
     cout<<"imprime binario to int :"<<i<<endl;

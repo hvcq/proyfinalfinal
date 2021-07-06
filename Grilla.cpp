@@ -126,7 +126,6 @@ Grilla::Grilla(int n,int m,int aa,int bb){
                 aux_h2->izquierda = aux_h1;
                 aux_arista->siguiente = new arista();
                 aux_arista->siguiente->peso = funcion_random(a,b);
-                cout<<"arista: "<<aux_arista->siguiente->peso<<endl;
                 minHeap.push(aux_arista->siguiente);
                 aux_arista->siguiente->a = aux_h1;
                 aux_arista->siguiente->b = aux_h2;
