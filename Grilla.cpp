@@ -412,17 +412,17 @@ int Grilla::funcion_random(int a,int b){
     convertToBinary(str_b,b);
     // Pasa los string de los enteros a una representacion binaria contenida en
     // las cadenas de caracteres cadena_a y cadena_b
-    char cadena_a [9];
-    char cadena_b [9];
-    cadena_a[8] = '\0';
-    cadena_b[8] = '\0';
-    memset(cadena_a,'0',8);
-    memset(cadena_b,'0',8);
+    char cadena_a [33];
+    char cadena_b [33];
+    cadena_a[32] = '\0';
+    cadena_b[32] = '\0';
+    memset(cadena_a,'0',32);
+    memset(cadena_b,'0',32);
     for(int i = 0; i < str_a.length(); ++i){
-        cadena_a[8 - str_a.length() + i] = str_a.at(i);
+        cadena_a[32 - str_a.length() + i] = str_a.at(i);
     }
     for(int i = 0; i < str_b.length(); ++i){
-        cadena_b[8 - str_b.length() + i] = str_b.at(i);
+        cadena_b[32 - str_b.length() + i] = str_b.at(i);
     }
     //Verifica hasta que posicion los bit no varian en el entero b
     int pos_b = 0;
@@ -431,11 +431,11 @@ int Grilla::funcion_random(int a,int b){
     }
     //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
     //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
-    char cadena_random [9];
-    cadena_random[8] = '\0';
-    memset(cadena_random,'0',8);
+    char cadena_random [33];
+    cadena_random[32] = '\0';
+    memset(cadena_random,'0',32);
     int random;
-    for(int i = pos_b; i< 8; ++i){
+    for(int i = pos_b; i< 32; ++i){
         random = rand()&1;
         cadena_random[i] = enteroACaracter(random);
     }
@@ -502,10 +502,10 @@ vector<arista *> Grilla::kruskal(){
             nubes->Union(arista_aux->a,arista_aux->b);
         }
     }
-    /*cout<<"pase el find y union"<<endl;
-    for(int i = 0 ; i < MST.size(); i++){
-         cout<<"("<<MST.at(i)->a->num<<" , "<<MST.at(i)->b->num<<") "<<" Peso arista:"<<MST.at(i)->peso<<endl;
-    }*/
+    cout<<"( x , y ) <- Vertices que corresponden a la arista"<<endl;
+    for(int i = 0 ; i < MST.size(); i++){     
+        cout<<"("<<MST.at(i)->a->num<<" , "<<MST.at(i)->b->num<<")"<<endl;
+    }
     return MST;
 }
 
