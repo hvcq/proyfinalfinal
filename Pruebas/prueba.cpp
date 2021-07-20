@@ -83,58 +83,56 @@ int random(int a,int b){
     convertToBinary(str_b,b);
     // Pasa los string de los enteros a una representacion binaria contenida en
     // las cadenas de caracteres cadena_a y cadena_b
-    char cadena_a [9];
-    char cadena_b [9];
-    cadena_a[8] = '\0';
-    cadena_b[8] = '\0';
-    memset(cadena_a,'0',8);
-    memset(cadena_b,'0',8);
+    char cadena_a [33];
+    char cadena_b [33];
+    cadena_a[32] = '\0';
+    cadena_b[32] = '\0';
+    memset(cadena_a,'0',32);
+    memset(cadena_b,'0',32);
     for(int i = 0; i < str_a.length(); ++i){
-        cadena_a[8 - str_a.length() + i] = str_a.at(i);
+        cadena_a[32 - str_a.length() + i] = str_a.at(i);
     }
     for(int i = 0; i < str_b.length(); ++i){
-        cadena_b[8 - str_b.length() + i] = str_b.at(i);
+        cadena_b[32 - str_b.length() + i] = str_b.at(i);
     }
     //Verifica hasta que posicion los bit no varian en el entero b
-    int pos = 0;
-    while(cadena_b[pos] == '0'){
-        ++pos;
+    int pos_b = 0;
+    while(cadena_b[pos_b] == '0'){
+        ++pos_b;
     }
     //Le asigna un bit aleatorio a las columnas que siguen de la posicion antes mencionada
     //Esto nos devolvera una representacion binaria de un entero que esta en el rango [a,b]
-    char cadena_random [9];
-    cadena_random[8] = '\0';
-    memset(cadena_random,'0',8);
+    char cadena_random [33];
+    cadena_random[32] = '\0';
+    memset(cadena_random,'0',32);
     int random;
-    for(int i = pos; i< 8; ++i){
+    for(int i = pos_b; i< 32; ++i){
         random = rand()&1;
         cadena_random[i] = enteroACaracter(random);
     }
-    /*ALTERNATIVA 1 int pos2 = 0;
-    while(cadena_a[pos2] == '0'){
-        ++pos2;
-    }
-    if(rand()&1 == 0){
-        cadena_random[pos] = '1';
-    }else{
-        cadena_random[pos2] = '1';
-    }*/
-    //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b] 
-
-    int borrarborrar = stoi(cadena_random, nullptr, 2);
-    //cout<<"cadena antes: "<<cadena_random<<" - numero antes: "<<borrarborrar<<endl;
     int aux_int = stoi(cadena_random, nullptr, 2);
-    while((aux_int < a) || (aux_int > b)){
-        cadena_random[pos] = cadena_b[pos]; 
-        aux_int = stoi(cadena_random, nullptr, 2);
-        ++pos;
+    if((aux_int < a) || (aux_int > b)){
+        int aproxima = rand()&1;
+        if(aproxima == 0){
+            //Acota el entero asemejandolo a 'a', hasta que este en el rango [a,b]
+            int pos_a = pos_b;
+            while((aux_int < a) || (aux_int > b)){
+                cadena_random[pos_a] = cadena_a[pos_a]; 
+                aux_int = stoi(cadena_random, nullptr, 2);
+                ++pos_a;
+            }
+        }else{
+            //Acota el entero asemejandolo a 'b', hasta que este en el rango [a,b]
+            while((aux_int < a) || (aux_int > b)){
+                cadena_random[pos_b] = cadena_b[pos_b]; 
+                aux_int = stoi(cadena_random, nullptr, 2);
+                ++pos_b;
+            }
+        }
     }
-    //cout<<"cadena despues: "<<cadena_random<<endl;
-    //Pasamos la representacion binara a entero
-    //int int_random = stoi(cadena_random, nullptr, 2);
-    //return int_random;
     return aux_int;
 }
+
 
 int main(){
     srand(time(NULL));
@@ -143,13 +141,13 @@ int main(){
     int a,b;
     cin>>a;
     cin>>b;
-    auto start = chrono::high_resolution_clock::now();
-    int p = random(a,b);
-    auto finish = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds> (finish - start).count();
-    cout <<"total time "<< duration << " [ms]" << " \n";
-    cout<<p<<endl;
-
+    for(int i = 0; i < 20 ; i++){
+        auto start = chrono::high_resolution_clock::now();
+        int p = random(a,b);
+        auto finish = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::nanoseconds> (finish - start).count();
+        cout <<"total time "<< duration << " [ns]" << " \n";
+    }
     /*
     vector<int> letras;
     for(int i = 0;i<640;++i)
